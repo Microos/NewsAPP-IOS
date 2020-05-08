@@ -1,0 +1,1 @@
+../../../SwiftSpinner/Sources/SwiftSpinner/SwiftSpinner.h

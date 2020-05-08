@@ -1,0 +1,1 @@
+../../../Target Support Files/XLPagerTabStrip/XLPagerTabStrip-umbrella.h

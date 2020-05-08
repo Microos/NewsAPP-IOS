@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookmarkCollectionCellContentView" customModule="NewsApp" customModuleProvider="target">
+            <connections>
+                <outlet property="bookmarkButton" destination="tdJ-lt-nIi" id="sOK-5O-xKP"/>
+                <outlet property="contentView" destination="xBj-qL-L5j" id="juG-Eq-fkd"/>
+                <outlet property="newsImageView" destination="rhh-Hv-wUX" id="53K-bN-qcN"/>
+                <outlet property="pubDateLabel" destination="07m-nw-UKF" id="ISf-85-hah"/>
+                <outlet property="sectionLabel" destination="LjS-Xv-a1J" id="Wi4-GY-Kz1"/>
+                <outlet property="titleLabel" destination="p2N-1A-s53" id="knz-Ov-Co3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="180" height="256"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBj-qL-L5j">
+                    <rect key="frame" x="0.0" y="0.0" width="180" height="256"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-Hv-wUX">
+                            <rect key="frame" x="0.0" y="0.0" width="180" height="131"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="elLabelLabel elLabelLabel elLabelLabel elLabelLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2N-1A-s53">
+                            <rect key="frame" x="5" y="138" width="170" height="54"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04 Apr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07m-nw-UKF">
+                            <rect key="frame" x="8" y="232.5" width="55" height="13.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="pfO-UF-flL"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="| World news" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjS-Xv-a1J">
+                            <rect key="frame" x="64" y="232.5" width="89" height="13.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdJ-lt-nIi">
+                            <rect key="frame" x="154" y="228" width="18" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="T8H-6j-Ov3"/>
+                                <constraint firstAttribute="width" constant="18" id="wbN-5D-6PU"/>
+                            </constraints>
+                            <state key="normal" image="bookmark.fill" catalog="system"/>
+                            <connections>
+                                <action selector="bookmarkButtonAction:" destination="-1" eventType="touchUpInside" id="1up-SF-fbh"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="tdJ-lt-nIi" secondAttribute="bottom" constant="6" id="3Ir-2b-bz7"/>
+                        <constraint firstAttribute="trailing" secondItem="p2N-1A-s53" secondAttribute="trailing" constant="5" id="44J-qf-g45"/>
+                        <constraint firstAttribute="trailing" secondItem="rhh-Hv-wUX" secondAttribute="trailing" id="DjW-ha-NNn"/>
+                        <constraint firstItem="07m-nw-UKF" firstAttribute="leading" secondItem="xBj-qL-L5j" secondAttribute="leading" constant="8" id="EHl-cc-Afd"/>
+                        <constraint firstItem="rhh-Hv-wUX" firstAttribute="leading" secondItem="xBj-qL-L5j" secondAttribute="leading" id="KZ6-5n-mrL"/>
+                        <constraint firstItem="LjS-Xv-a1J" firstAttribute="leading" secondItem="07m-nw-UKF" secondAttribute="trailing" constant="1" id="Of9-Ta-mnh"/>
+                        <constraint firstItem="rhh-Hv-wUX" firstAttribute="top" secondItem="xBj-qL-L5j" secondAttribute="top" id="VlZ-Wn-e3x"/>
+                        <constraint firstItem="p2N-1A-s53" firstAttribute="top" secondItem="rhh-Hv-wUX" secondAttribute="bottom" constant="7" id="b86-34-ExI"/>
+                        <constraint firstItem="LjS-Xv-a1J" firstAttribute="centerY" secondItem="tdJ-lt-nIi" secondAttribute="centerY" id="h7z-eU-YpK"/>
+                        <constraint firstItem="tdJ-lt-nIi" firstAttribute="leading" secondItem="LjS-Xv-a1J" secondAttribute="trailing" constant="1" id="hhM-QM-DYQ"/>
+                        <constraint firstItem="07m-nw-UKF" firstAttribute="centerY" secondItem="tdJ-lt-nIi" secondAttribute="centerY" id="jaB-u1-cD6"/>
+                        <constraint firstItem="rhh-Hv-wUX" firstAttribute="height" secondItem="xBj-qL-L5j" secondAttribute="height" multiplier="0.512" id="nSW-Yw-XmC"/>
+                        <constraint firstItem="p2N-1A-s53" firstAttribute="leading" secondItem="xBj-qL-L5j" secondAttribute="leading" constant="5" id="pXd-Jp-8Jo"/>
+                        <constraint firstAttribute="trailing" secondItem="tdJ-lt-nIi" secondAttribute="trailing" constant="8" id="xXi-XL-DC8"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="xBj-qL-L5j" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Cds-zc-phe"/>
+                <constraint firstItem="xBj-qL-L5j" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="GUF-Iz-pmr"/>
+                <constraint firstItem="xBj-qL-L5j" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Wrr-Do-TYf"/>
+                <constraint firstItem="xBj-qL-L5j" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="X3V-xC-zI8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-989.85507246376824" y="-6.6964285714285712"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bookmark.fill" catalog="system" width="112" height="128"/>
+    </resources>
+</document>
