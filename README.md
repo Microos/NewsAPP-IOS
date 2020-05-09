@@ -43,5 +43,4 @@ open `NewsApp.xcworkspace` with Xcode
 
 ### Google Search Trending
 
-<img src="https://i.ibb.co/DGVBhbK/trending-gif.gif">
-
+<img src="https://i.ibb.co/YQ5s5f0/trendiing-gif-sm.gif">
