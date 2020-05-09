@@ -31,15 +31,15 @@ open `NewsApp.xcworkspace` with Xcode
 
 ### Home & Bookmark Tabs
 
-![home/bookmark tabs](https://i.ibb.co/bbv13M0/homepage-gif.gif)
+<img src="https://i.ibb.co/pvQmJx0/home-gif-sm.gif" width="187px">
 
 ### Headlines by Sections
 
-![headlines](https://i.ibb.co/xhmGTQD/headlines-gif.gif)
+<img src="https://i.ibb.co/x6mrJky/headlines-gif-sm.gif">
 
 ### Search News
 
-![search-news](https://i.ibb.co/YLgPMZ2/search-gif.gif)
+<img src="https://i.ibb.co/7n60HLk/search-gif-sm.gif">
 
 ### Google Search Trending
 
