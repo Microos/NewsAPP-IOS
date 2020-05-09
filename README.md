@@ -1,4 +1,9 @@
-Branch: Backend
+# News APP IOS (Backend)
 
-Run server:  
-`npm start`
+- Install dependencies
+
+  `npm install`
+
+- Run server:  
+  `npm start`
+

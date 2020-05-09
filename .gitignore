@@ -3,4 +3,5 @@ node_modules/
 .idea/
 test.js
 mainTest.js
+.DS_Store
 ApiCilentTest.js

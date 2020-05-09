@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const helper = require('./helpers')
 const strickKeysCheck = (ret, ks) => {
     ks.map(k => {
         if (!ret[k])
@@ -6,7 +7,141 @@ const strickKeysCheck = (ret, ks) => {
     })
 };
 
-const tabPostProcessor = (src) => {
+const fieldFilter = (arr, fields) => {
+    let ret = []
+    for(let a of arr){
+        let allPass = true
+        for(f of fields){
+            if(!a[f] || a[f].length == 0){
+                allPass = false
+                break
+            }
+        }
+        if(allPass){
+            ret.push(a)
+        }
+    }
+    return ret
+}
+
+
+const articlePostProcessor = (content) => {
+    let ret = {};
+    ret['title'] = content.webTitle;
+    try {
+        const assets = content.blocks.main.elements[0].assets;
+        ret['image'] = assets[assets.length - 1].file;
+    } catch (e) {
+        console.error(`Error when try to get image: [${e}]; => use null for imageUrl`);
+        ret['image'] = null;
+    }
+    //date : 2020-03-26T21:43:01Z
+
+
+    try{
+        ret['date'] = helper.formatArticleDate(content.webPublicationDate);
+        ret['section'] = content['sectionName'];
+        ret['extUrl'] = content['webUrl']
+
+    }catch (e) {
+        console.error(`Error when fetch fields: ${e};`);
+    }
+
+    ret['content'] = ''
+    try{
+        for(let b of content.blocks.body){
+            ret['content'] += b.bodyHtml + "\n";
+        }
+        let reg = /<iframe .*>.*<\/iframe>/gmi
+        ret['content'] = ret['content'].replace(reg, "")
+    }catch (e) {
+        console.error(`Error when fetch contents: ${e};`);
+    }
+
+    return ret;
+};
+
+const homePostProcessor = (contentArray) => {
+    const keys = ["thumbnail", "title", "time","timeForBookmark", "section", "artId", "extUrl"]
+    let processedContentArray = contentArray.map((content) => {
+        let ret = {}
+
+        ret['thumbnail'] = content['fields']['thumbnail']
+        if (!ret['thumbnail']) ret['thumbnail'] = null
+
+        ret['title'] = content['webTitle']
+        ret['time'] = content['webPublicationDate']
+        ret['timeForBookmark'] = helper.formatArticleDate(ret['time'], true)
+        ret['section'] = content['sectionName']
+        ret['artId'] = content['id']
+        ret['extUrl'] = content['webUrl']
+
+        return ret
+    })
+
+    let requiredFields = ["title", "extUrl", "artId"]
+    return fieldFilter(processedContentArray, requiredFields)
+}
+const searchPostProcessor = (contentArray) => {
+    let processedContentArray =  contentArray.map(o => {
+        let ret = {};
+        ret['title'] = o['webTitle'];
+        ret['time'] = o['webPublicationDate']
+        ret['timeForBookmark'] = helper.formatArticleDate(ret['time'], true)
+        //section may missing: undefined/"";
+        ret['section'] = o['sectionId'] || "";
+        ret['artId'] = o['id'];
+        ret['extUrl'] = o['webUrl'];
+
+
+        // imageUrl i.g. thumbnail
+        try {
+            const assets = o.blocks.main.elements[0].assets;
+            ret['thumbnail'] = assets[assets.length - 1].file;
+        } catch (e) {
+            ret['thumbnail'] = null;
+        }
+
+        return ret;
+    });
+
+    let requiredFields = ["title", "artId", "extUrl"]
+    return fieldFilter(processedContentArray, requiredFields)
+};
+
+const tabPostProcessor = (contentArray) => {
+    let processedArr = contentArray.map(o => {
+        let ret = {};
+        try {
+            ret['title'] = o['webTitle'];
+            ret['section'] = o['sectionName'];
+            ret['artId'] = o['id'];
+            ret['time'] = o['webPublicationDate']
+            ret['timeForBookmark'] = helper.formatArticleDate(ret['time'], true)
+            ret['extUrl'] = o['webUrl']
+        } catch (e) {
+            console.error(`tabPostProcessor: ${e} => item will not be included.`);
+            return null;
+        }
+
+        //image allow null
+        try {
+            let assets = o.blocks.main.elements[0].assets;
+            ret['thumbnail'] = assets[assets.length - 1].file;
+        } catch (e) {
+            console.error(`tabPostProcessor: ${e} => use null for image`);
+            ret['thumbnail'] = null;
+        }
+
+        return ret;
+    });
+
+    return processedArr
+}
+
+//
+
+const _tabPostProcessor = (src) => {
     let name = src + ' tab postprocessor';
 
     // keys
@@ -95,7 +230,7 @@ const tabPostProcessor = (src) => {
     }
 
 };
-const articlePostProcessor = (src) => {
+const _articlePostProcesarticlePostProcessorsor = (src) => {
     let name = src + ' article postprocessor';
     const strickKeys = ['title', 'imageUrl', 'date', 'description', 'section']; //section needed for bookmark
 
@@ -111,7 +246,9 @@ const articlePostProcessor = (src) => {
             ret['imageUrl'] = null;
         }
         //date : 2020-03-26T21:43:01Z
-        ret['date'] = content.webPublicationDate.slice(0, 10);
+        date = content.webPublicationDate.slice(0, 10);
+        date = new Date(date).toLocaleString('en-us',{month:'short', year:'numeric', day:'numeric'})
+        ret['date'] = date
         ret['description'] = content.blocks.body[0].bodyTextSummary;
         ret['section'] = content['sectionName'];
         return ret;
@@ -158,7 +295,7 @@ const articlePostProcessor = (src) => {
 };
 
 
-const searchPostProcessor = (src) => {
+const _searchPostProcessor = (src) => {
     let name = src + ' search postprocessor';
     const strickKeys = ['title', 'imageUrl', 'date', 'section', 'url', 'artId']; //section needed for bookmark
 
@@ -235,8 +372,9 @@ const searchPostProcessor = (src) => {
 };
 
 module.exports = {
-    tabPostProcessor: tabPostProcessor,
+    homePostProcessor: homePostProcessor,
     articlePostProcessor: articlePostProcessor,
-    searchPostProcessor: searchPostProcessor
+    searchPostProcessor: searchPostProcessor,
+    tabPostProcessor: tabPostProcessor,
 
 };

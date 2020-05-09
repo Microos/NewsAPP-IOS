@@ -54,7 +54,21 @@ function articleParamCheck(req, res) {
     return true;
 }
 
+
+function formatArticleDate(s, woyear=false){ //without year
+    const d = new Date(s)
+    const year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
+    const month = new Intl.DateTimeFormat('en', { month: 'short' }).format(d)
+    const day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
+
+    if(woyear){
+        return `${day} ${month}`
+    }
+    return `${day} ${month} ${year}`
+
+}
 module.exports = {
+    formatArticleDate: formatArticleDate,
     logRequest: logRequest,
     base64: base64,
     tabParamCheck: tabParamCheck,
