@@ -1,4 +1,4 @@
-# News APP IOS (Backend)
+# Newser: iOS App Backend
 
 - Install dependencies
 
