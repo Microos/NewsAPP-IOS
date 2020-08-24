@@ -1,12 +1,11 @@
-# News APP IOS
+# Newser: A lightweight News Digest iOS App
 
-An IOS-version news application built using Swift and [CocoaPods](https://cocoapods.org/).
-
+An iOS-version news application built using Swift and [CocoaPods](https://cocoapods.org/).
 
 
 ## Supporting Backend
 
-The supporting backend can be found [here](https://github.com/Microos/NewsAPP-IOS/tree/backend)
+The supporting backend can be found [here](https://github.com/Microos/Newser-iOS/tree/backend)
 
 ## Usage
 
@@ -18,7 +17,7 @@ open `NewsApp.xcworkspace` with Xcode
 
 - Xcode: Version 11.4.1 (11E503a)
 - Swift: Version 5
-- Pods: (check details in [Podfile](https://github.com/Microos/NewsAPP-IOS/blob/master/Podfile))
+- Pods: (check details in [Podfile](https://github.com/Microos/Newser-iOS/blob/master/Podfile))
   - 'SDWebImage', '~> 5.0'
   - 'SwiftyJSON', '~> 4.0'
   - 'Alamofire', '~> 4.9.1'
